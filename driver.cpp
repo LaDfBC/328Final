@@ -14,6 +14,9 @@
 #include "operator_library.h"
 #include "symmetric_matrix.h"
 #include "a_matrix.h"
+#include "b_vector.h"
+#include "domain_err.h"
+#include "analyzer.h"
 
 using std::cout;
 using std::cin;
