@@ -25,7 +25,6 @@ class Gaussian_Elimination : public Solver<T, U, V>
     V m_a_matrix;
     U m_b_vector;
     U m_x_vector;
-    int this_shouldnt_be_here;
 };
 
 #endif //GAUSSIAN_ELIMINATION_H
