@@ -11,7 +11,7 @@
 
 #include "operator_library.h"
 
-template <class U, class T, class V>
+template <class T, class U, class V>
 class Solver
 {
   public:

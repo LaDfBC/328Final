@@ -11,6 +11,7 @@
 #define OPERATOR_LIBRARY_H
 
 #include <iostream>
+#include "solver.h"
 
 using std::ostream;
 using std::istream;
@@ -39,6 +40,9 @@ using std::istream;
 */
 template <class T>
 ostream& operator<<(ostream& os, const Matrix_Base<T>& input_matrix);
+
+template <class T, class U, class V>
+ostream& operator<<(ostream&os, const Solver<T, U, V>& input_solver);
 
 /*
   OPERATOR: istream& input_stream(istream& in);

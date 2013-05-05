@@ -12,6 +12,7 @@
 #include "file_stream.h"
 #include "matrix.h"
 #include "operator_library.h"
+#include "solver.h"
 #include "symmetric_matrix.h"
 #include "partial_diffeq.h"
 #include "domain_err.h"

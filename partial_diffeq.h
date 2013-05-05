@@ -24,6 +24,8 @@ class Partial_DiffEQ
     V& get_a_matrix();
     void set_b_vector_index(const short input_index, const T input_data);
     void set_x_vector_index(const short input_index, const T input_data);
+
+    ostream& output_stream(ostream& out) const;
     
   private:
     unsigned short m_num_points;

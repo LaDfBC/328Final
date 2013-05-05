@@ -15,6 +15,12 @@ ostream& operator<<(ostream& out, const Matrix_Base<T>& input_matrix)
   return input_matrix.output_stream(out);
 }
 
+template <class T, class U, class V>
+ostream& operator<<(ostream& out, const Solver<T, U, V>& input_solver)
+{
+  return input_solver.output_stream(out);
+}
+
 template <class T>
 istream& operator>>(istream& in, Matrix_Base<T>& input_matrix)
 {

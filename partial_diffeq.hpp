@@ -52,7 +52,7 @@ T Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
                           Right_Function,Bottom_Function>::
 operator()()
 {
-  // this stops compiler err
+  // this stops compiler err - What do you want this to do?
   Matrix_Vector<T> return_this;
   return return_this;
 }
@@ -76,6 +76,7 @@ void Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
                              Right_Function,Bottom_Function>::
 set_b_vector_index(const short input_index, const T input_data)
 {
+  m_b_vector[input_index] = input_data;
   return;
 }
 
@@ -87,5 +88,27 @@ void Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
                              Right_Function,Bottom_Function>::
 set_x_vector_index(const short input_index, const T input_data)
 {
+  m_x_vector[input_index] = input_data;
   return;
+}
+
+
+template<class T, class U, class V, double Top_Function(double), 
+                                    double Left_Function(double), 
+                                    double Right_Function(double), 
+                                    double Bottom_Function(double)>
+ostream& Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
+                                 Right_Function,Bottom_Function>::
+output_stream(ostream& out) const
+{
+  out << "A Matrix: " << endl;
+  out << m_a_matrix << endl << endl;
+
+  out << "B Vector: " << endl;
+  out << m_b_vector << endl  << endl;
+
+  out << "X Vector: " << endl;
+  out << m_x_vector << endl;
+
+  return out;
 }
