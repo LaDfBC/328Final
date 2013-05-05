@@ -11,13 +11,30 @@
 
 #include "operator_library.h"
 
-template <class T, class U, class V>
+template <class T, class U, class V, class DerivedSolver>
 class Solver
 {
   public:
-    ostream& output_stream(ostream& out) const = 0;
-    int get_convergence_speed() = 0;
-    U& operator()() = 0;
+
+    DerivedSolver& as_derived() 
+    {
+      return static_cast<DerivedSolver>(*this);
+    }
+
+    ostream& output_stream(ostream& out) const
+    {
+      return as_derived.output_stream(out);
+    }
+
+    int get_convergence_speed()
+    {
+      return as_derived.get_convergence_speed();
+    }
+
+    U& operator()()
+    {
+      return as_derived();
+    }
 
   private:
     V m_a_matrix;

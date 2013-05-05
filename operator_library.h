@@ -39,10 +39,11 @@ using std::istream;
     when the matrix must be output.
 */
 template <class T>
-ostream& operator<<(ostream& os, const Matrix_Base<T>& input_matrix);
+ostream& operator<<(ostream& out, const Matrix_Base<T>& input_matrix);
 
-template <class T, class U, class V>
-ostream& operator<<(ostream&os, const Solver<T, U, V>& input_solver);
+template <class T, class U, class V, class DerivedSolver>
+ostream& operator<<(ostream& out, 
+                      const Solver<T, U, V, DerivedSolver>& input_solver);
 
 /*
   OPERATOR: istream& input_stream(istream& in);
