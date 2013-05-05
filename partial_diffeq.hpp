@@ -72,12 +72,11 @@ template<class T, class U, class V, double Top_Function(double),
                                     double Left_Function(double), 
                                     double Right_Function(double), 
                                     double Bottom_Function(double)>
-void Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
+U& Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
                              Right_Function,Bottom_Function>::
-set_b_vector_index(const short input_index, const T input_data)
+get_b_vector()
 {
-  m_b_vector[input_index] = input_data;
-  return;
+  return m_b_vector;
 }
 
 template<class T, class U, class V, double Top_Function(double), 

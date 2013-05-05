@@ -22,7 +22,7 @@ class Partial_DiffEQ
     T operator()();
 	
     V& get_a_matrix();
-    void set_b_vector_index(const short input_index, const T input_data);
+    U& get_b_vector();
     void set_x_vector_index(const short input_index, const T input_data);
 
     ostream& output_stream(ostream& out) const;

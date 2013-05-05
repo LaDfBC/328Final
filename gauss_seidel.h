@@ -11,6 +11,7 @@
 
 #include "solver.h"
 
+double proximity_threshold = 0.000001;
 /*
   This is to set up for the Barton-Nackman Trick.  The last parameter to the
   Solver inheritance includes template parameters for Solver AND Gauss Seidel!
@@ -20,16 +21,13 @@ class Gauss_Seidel : public Solver<U, V,
                                    Solver<U, V, Gauss_Seidel<T, U, V> > >
 {
   public:
-    Gauss_Seidel(const V& input_matrix, 
-                    const U& input_b_vector, 
-                    const U& input_x_vector);
+    Gauss_Seidel(const V& input_diffeq);
     ostream& output_stream(ostream& out) const;
-    U& operator()();
+    T& operator()();
 
   private:
-    V m_a_matrix;
-    U m_b_vector;
-    U m_x_vector;
+    U m_a_matrix;
+    T m_x_vector;
 };
 
 #endif //GAUSS_SEIDEL_H
