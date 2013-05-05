@@ -13,10 +13,10 @@
 #include "matrix.h"
 #include "operator_library.h"
 #include "symmetric_matrix.h"
-#include "a_matrix.h"
-#include "b_vector.h"
+#include "partial_diffeq.h"
 #include "domain_err.h"
 #include "analyzer.h"
+
 
 using std::cout;
 using std::cin;
@@ -40,8 +40,9 @@ int main(int argc, char* argv[])
     test_file_name = argv[1];
   }
 
-  A_Matrix<float> checker(4);
-  cout << checker() << endl;
+  Partial_DiffEQ<double, Matrix_Vector<double>, Symmetric_Matrix<double>, 
+                 sqrt, sqrt, sqrt, sqrt> checker(4);
+  cout << checker.get_a_matrix() << endl;
 
   return 0;
 }
