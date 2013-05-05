@@ -13,6 +13,7 @@
 #include "matrix.h"
 #include "operator_library.h"
 #include "solver.h"
+#include "gauss_seidel.h"
 #include "symmetric_matrix.h"
 #include "partial_diffeq.h"
 #include "domain_err.h"

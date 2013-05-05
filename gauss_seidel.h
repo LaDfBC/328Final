@@ -11,8 +11,13 @@
 
 #include "solver.h"
 
+/*
+  This is to set up for the Barton-Nackman Trick.  The last parameter to the
+  Solver inheritance includes template parameters for Solver AND Gauss Seidel!
+*/
 template <class T, class U, class V>
-class Gauss_Seidel : public Solver<T, U, V>
+class Gauss_Seidel : public Solver<U, V, 
+                                   Solver<U, V, Gauss_Seidel<T, U, V> > >
 {
   public:
     Gauss_Seidel(const V& input_matrix, 

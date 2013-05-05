@@ -1,10 +1,10 @@
 driver.o: driver.cpp file_stream.h matrix_vector.h range_err.h size_err.h \
  div_zero_err.h div_zero_err.hpp size_difference_err.h matrix_vector.hpp \
  matrix.h matrix_base.h matrix.hpp file_stream.hpp file_err.h \
- operator_library.h solver.h operator_library.hpp symmetric_matrix.h \
- square_matrix_err.h square_matrix_Err.hpp symmetric_matrix.hpp \
- symmetric_err.h symmetric_err.hpp partial_diffeq.h partial_diffeq.hpp \
- domain_err.h domain_err.hpp analyzer.h analyzer.hpp
+ operator_library.h solver.h operator_library.hpp gauss_seidel.h \
+ symmetric_matrix.h square_matrix_err.h square_matrix_Err.hpp \
+ symmetric_matrix.hpp symmetric_err.h symmetric_err.hpp partial_diffeq.h \
+ partial_diffeq.hpp domain_err.h domain_err.hpp analyzer.h analyzer.hpp
 file_err.o: file_err.cpp file_err.h
 range_err.o: range_err.cpp range_err.h
 size_difference_err.o: size_difference_err.cpp size_difference_err.h

@@ -17,7 +17,7 @@ ostream& operator<<(ostream& out, const Matrix_Base<T>& input_matrix)
 
 template <class T, class U, class V, class DerivedSolver>
 ostream& operator<<(ostream& out, 
-                      const Solver<T, U, V, DerivedSolver>& input_solver)
+                      const Solver<U, V, DerivedSolver>& input_solver)
 {
   return input_solver.output_stream(out);
 }
