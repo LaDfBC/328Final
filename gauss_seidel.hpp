@@ -31,13 +31,6 @@ Gauss_Seidel<T, U, V>::Gauss_Seidel(const V& input_diffeq)
 }
 
 template <class T, class U, class V>
-Gauss_Seidel<T, U, V>::ostream& output_stream(ostream& out) const
-{
-  return out;
-}
-
-
-template <class T, class U, class V>
 Gauss_Seidel<T, U, V>::T& operator()()
 {
   // ERROR CHECKING - for diagonal dominance
@@ -95,6 +88,5 @@ Gauss_Seidel<T, U, V>::T& operator()()
   } while(fabs(current_difference) >= proximity_threshold);
   
   return next_guess_vector;
-
 }
 

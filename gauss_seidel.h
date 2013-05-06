@@ -22,7 +22,6 @@ class Gauss_Seidel : public Solver<U, V,
 {
   public:
     Gauss_Seidel(const V& input_diffeq);
-    ostream& output_stream(ostream& out) const;
     T& operator()();
 
   private:

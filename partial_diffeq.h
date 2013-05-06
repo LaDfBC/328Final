@@ -28,6 +28,8 @@ class Partial_DiffEQ
     ostream& output_stream(ostream& out) const;
     
   private:
+    void init_vectors(const unsigned short input_points);
+    void init_a_matrix(const unsigned short input_points);
     unsigned short m_num_points;
     U m_b_vector;
     U m_x_vector;
