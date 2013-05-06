@@ -155,7 +155,7 @@ init_vectors(const unsigned short input_points)
   {
     x_position = ((i% point_adjuster) + 1) / static_cast<double>(input_points);
     y_position = ((i / point_adjuster) + 1) / static_cast<double>(input_points);
-    cout << x_position << " " << y_position << endl;
+
     //Check left boundary
     if((i % point_adjuster) == 0)
     {
