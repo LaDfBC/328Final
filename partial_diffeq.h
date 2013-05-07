@@ -21,8 +21,8 @@ class Partial_DiffEQ
     //Matt, what is this going to do in the PDE class? Also, it needs to be generic - Use T, not Matrix_Vector<T>
     T operator()();
 	
-    V& get_a_matrix();
-    U& get_b_vector();
+    V& get_a_matrix() const;
+    U& get_b_vector() const;
     void set_x_vector_index(const short input_index, const T input_data);
 
     ostream& output_stream(ostream& out) const;

@@ -23,17 +23,17 @@ class Solver
 
     ostream& output_stream(ostream& out) const
     {
-      return as_derived.output_stream(out);
+      return as_derived(output_stream(out));
     }
 
     int get_convergence_speed()
     {
-      return as_derived.get_convergence_speed();
+      return as_derived(get_convergence_speed());
     }
 
-    U& operator()()
+    U& evaluate()
     {
-      return as_derived();
+      return as_derived(evaluate());
     }
 
   private:

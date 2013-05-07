@@ -19,7 +19,6 @@
 #include "domain_err.h"
 #include "analyzer.h"
 
-
 using std::cout;
 using std::cin;
 using std::endl;
@@ -46,6 +45,13 @@ int main(int argc, char* argv[])
                  sqrt, sqrt, sqrt, sqrt> checker(4);
   
   cout << checker.get_b_vector() << endl;
+
+  Gauss_Seidel<Matrix_Vector<double>, 
+               Matrix<double>, 
+               Partial_DiffEQ<double, Matrix_Vector<double>, Symmetric_Matrix<double>, 
+                 sqrt, sqrt, sqrt, sqrt> > solver1(checker);
+  cout << solver1.evaluate() << endl;
+
   //cout << checker.get_a_matrix() << endl;
   //
   //Matrix_Vector<double> new_vect(checker.get_a_matrix().get_number_of_rows());

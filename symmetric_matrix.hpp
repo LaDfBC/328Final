@@ -11,6 +11,7 @@
 template <class T>
 Symmetric_Matrix<T>::Symmetric_Matrix(const Matrix<T>& input_matrix)
 {
+  cout << "Y" << endl;
   //Included to make the checks easier and speedier
   data_size input_rows = input_matrix.get_number_of_rows();
   data_size input_columns = input_matrix.get_number_of_columns();
@@ -64,6 +65,7 @@ Symmetric_Matrix<T>::Symmetric_Matrix(data_size input_rows, data_size input_colu
     throw Square_Matrix_Err<T>(input_rows, input_columns);
   }
 
+  Matrix<T>::clear();
   Matrix<T>::m_rows = input_rows;
   Matrix<T>::m_columns = Matrix<T>::m_rows;
   Matrix<T>::m_elements = new T*[Matrix<T>::m_rows];

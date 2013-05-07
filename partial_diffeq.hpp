@@ -41,9 +41,9 @@ template<class T, class U, class V, double Top_Function(double),
                                     double Bottom_Function(double)>
 V& Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
                           Right_Function,Bottom_Function>::
-get_a_matrix()
+get_a_matrix() const
 {
-  return m_a_matrix;
+  return const_cast<V&>(m_a_matrix);
 }
 
 template<class T, class U, class V, double Top_Function(double), 
@@ -52,9 +52,9 @@ template<class T, class U, class V, double Top_Function(double),
                                     double Bottom_Function(double)>
 U& Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
                              Right_Function,Bottom_Function>::
-get_b_vector()
+get_b_vector() const
 {
-  return m_b_vector;
+  return const_cast<U&>(m_b_vector);
 }
 
 template<class T, class U, class V, double Top_Function(double), 

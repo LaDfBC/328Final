@@ -13,12 +13,21 @@ T Matrix<T>::zero_variable = 0;
 template <class T>
 Matrix<T>::Matrix()
 {
-  m_rows = 0;
-  m_columns = 0;
+  m_rows = 1;
+  m_columns = 1;
   m_elements = new T*[m_rows];
+  
   for (data_size i = 0; i < m_rows; i++)
   {
     m_elements[i] = new T[m_columns];
+  }
+ 
+  for(data_size i = 0; i < m_rows; i++)
+  {
+    for(data_size j = 0; j < m_columns; j++)
+    {
+      m_elements[i][j] = 0;
+    }
   }
 }
 
@@ -31,7 +40,7 @@ Matrix<T>::Matrix(data_size input_m_rows, data_size input_m_columns)
     I did attempt to do so and left this space open for handlers in the 
     future if need be.
   */
-  
+ 
   m_rows = input_m_rows;
   m_columns = input_m_columns;
   m_elements = new T*[m_rows];
@@ -39,7 +48,7 @@ Matrix<T>::Matrix(data_size input_m_rows, data_size input_m_columns)
   {
     m_elements[i] = new T[m_columns];
   }
-
+ 
   for(data_size i = 0; i < m_rows; i++)
   {
     for(data_size j = 0; j < m_columns; j++)
@@ -58,14 +67,15 @@ Matrix<T>::~Matrix()
 template <class T>
 Matrix<T>::Matrix(const Matrix<T>& source_matrix)
 {
-  clear();
   m_rows = source_matrix.m_rows;
   m_columns = source_matrix.m_columns;
   m_elements = new T*[m_rows];
+  cout << "A" <<endl;
   for(data_size i = 0; i < m_rows; i++)
   {
     m_elements[i] = new T[m_columns];
   }
+  cout << "B" << endl;
   for(data_size i = 0; i < m_rows; i++)
   {
     for(data_size j = 0; j < m_columns; j++)
@@ -73,13 +83,14 @@ Matrix<T>::Matrix(const Matrix<T>& source_matrix)
       m_elements[i][j] = 0;
     }
   }
-
+  cout << "X" << endl;
   copy(source_matrix);
 }
 
 template <class T>
 Matrix<T>::Matrix(const Matrix_Vector<T>& source_vector)
 {
+  cout << "R" <<endl;
   m_rows = source_vector.size();
   m_columns = 1;
   m_elements = new T*[m_rows];
@@ -97,16 +108,18 @@ Matrix<T>::Matrix(const Matrix_Vector<T>& source_vector)
 template <class T>
 Matrix<T>& Matrix<T>::operator=(const Matrix<T>& right_hand_side)
 {
+  cout << "What?" << endl;
   clear();
+  cout << "N" << endl;
   m_rows = right_hand_side.m_rows;
   m_columns = right_hand_side.m_columns;
-  
+  cout << "M " <<endl;
   m_elements = new T*[m_rows];
   for(data_size i = 0; i < m_rows; i++)
   {
     m_elements[i] = new T[m_columns];
   }
-
+  cout << "HERE!" << endl;
   copy(right_hand_side);
   return *this;
 }
@@ -319,6 +332,7 @@ void Matrix<T>::clear()
   {
     delete [] m_elements[i];
   }
+
   delete [] m_elements;
  
   return;
