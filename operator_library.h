@@ -45,6 +45,14 @@ template <class T, class U, class V, class DerivedSolver>
 ostream& operator<<(ostream& out, 
                       const Solver<U, V, DerivedSolver>& input_solver);
 
+double Poisson_Top(double x);
+
+double Poisson_Bottom(double x);
+
+double Poisson_Left(double);
+
+double Poisson_Right(double);
+
 /*
   OPERATOR: istream& input_stream(istream& in);
     Input: in - the input stream from which to read information

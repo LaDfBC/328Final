@@ -43,7 +43,8 @@ int main(int argc, char* argv[])
   }
 
   Partial_DiffEQ<double, Matrix_Vector<double>, Symmetric_Matrix<double>, 
-                 sqrt, sqrt, sqrt, sqrt> checker(3);
+                 Poisson_Top, Poisson_Left, 
+                 Poisson_Right, Poisson_Bottom> checker(3);
   
   cout << checker.get_b_vector() << endl;
   cout << checker.get_a_matrix() << endl;
@@ -52,14 +53,16 @@ int main(int argc, char* argv[])
                        Matrix<double>, 
                        Partial_DiffEQ<double, Matrix_Vector<double>, 
                          Symmetric_Matrix<double>, 
-                         sqrt, sqrt, sqrt, sqrt> > solver1(checker);
+                         Poisson_Top, Poisson_Left, 
+                         Poisson_Right, Poisson_Bottom> > solver1(checker);
   cout << solver1.evaluate() << endl;
 
   Gauss_Seidel<Matrix_Vector<double>, 
                Matrix<double>, 
                Partial_DiffEQ<double, Matrix_Vector<double>, 
-                              Symmetric_Matrix<double>, 
-                              sqrt, sqrt, sqrt, sqrt> > solver2(checker);
+                 Symmetric_Matrix<double>, 
+                 Poisson_Top, Poisson_Left, 
+                 Poisson_Right, Poisson_Bottom> > solver2(checker);
   cout << solver2.evaluate() << endl;
 
   return 0;

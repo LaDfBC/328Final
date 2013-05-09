@@ -22,6 +22,26 @@ ostream& operator<<(ostream& out,
   return input_solver.output_stream(out);
 }
 
+double Poisson_Top(double x)
+{
+  return x * x * x;
+}
+
+double Poisson_Bottom(double x)
+{
+  return x * x * x;
+}
+
+double Poisson_Left(double)
+{
+  return 0;
+}
+
+double Poisson_Right(double)
+{
+  return 1;
+}
+
 template <class T>
 istream& operator>>(istream& in, Matrix_Base<T>& input_matrix)
 {
