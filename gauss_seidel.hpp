@@ -2,8 +2,8 @@
 * Programmer: George Mausshardt and Matt Lindsay
 * Date: 05/12/2013
 * FileName: Gauss_Seidel.hpp
-* Purpose: Implementation file for the small class built to approximate
-*   differential equations using Gauss-Seidel
+* Purpose: Implementation file for the class built to approximate
+*   differential equations using the Gauss-Seidel method
 */
 
 template <class T, class U, class V>
@@ -15,7 +15,8 @@ Gauss_Seidel<T, U, V>::Gauss_Seidel(const V& input_diffeq)
   unsigned int number_of_rows = 
     input_diffeq.get_a_matrix().get_number_of_rows();
   U a_matrix_placeholder = input_diffeq.get_a_matrix();
-  //Appends the b vector to the end of the matrix
+
+  //Append the b vector to the end of the matrix
   for (data_size i = 0; i < number_of_rows; i++)
   {
     for (data_size j = 0; j < number_of_rows; j++)
@@ -26,14 +27,35 @@ Gauss_Seidel<T, U, V>::Gauss_Seidel(const V& input_diffeq)
       input_diffeq.get_b_vector()[i];
   }
 
+  //Store the temporary matrix into this class's a-matrix
   m_a_matrix = temporary_matrix;
 }
 
 template <class T, class U, class V>
 T Gauss_Seidel<T, U, V>::evaluate()
 {
-  // ERROR CHECKING - for diagonal dominance
+  //The next block checks for diagonal dominance
+  double upper_limit = 0;
+  double comparison_total = 0;
+  for(data_size i = 0; i < m_a_matrix.get_number_of_rows(); i++)
+  {
+    upper_limit = fabs(m_a_matrix(i, i));
+    comparison_total = 0;
+    for(data_size j = 0; j < m_a_matrix.get_number_of_columns() - 1; j++)
+    {
+      //Setup for the Diagonal Dominance Err Below
+      if (i != j)
+      {
+        comparison_total += m_a_matrix(i, j);
+      }
+    }
+    if(comparison_total >= upper_limit)
+    {
+      throw Diagonal_Dominance_Err<double>(comparison_total, upper_limit);
+    }
+  }
 
+  //Run the bulk of the Gauss-Seidel Algorithm
   T current_guess_vector(m_a_matrix.get_number_of_rows());
   for ( long i = 0; i < m_a_matrix.get_number_of_rows(); i++)
   {

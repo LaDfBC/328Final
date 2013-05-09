@@ -44,7 +44,7 @@ int main(int argc, char* argv[])
 
   Partial_DiffEQ<double, Matrix_Vector<double>, Symmetric_Matrix<double>, 
                  Poisson_Top, Poisson_Left, 
-                 Poisson_Right, Poisson_Bottom> checker(3);
+                 Poisson_Right, Poisson_Bottom> checker(4);
   
   cout << checker.get_b_vector() << endl;
   cout << checker.get_a_matrix() << endl;
