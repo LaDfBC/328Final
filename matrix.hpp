@@ -70,12 +70,11 @@ Matrix<T>::Matrix(const Matrix<T>& source_matrix)
   m_rows = source_matrix.m_rows;
   m_columns = source_matrix.m_columns;
   m_elements = new T*[m_rows];
-  cout << "A" <<endl;
   for(data_size i = 0; i < m_rows; i++)
   {
     m_elements[i] = new T[m_columns];
   }
-  cout << "B" << endl;
+
   for(data_size i = 0; i < m_rows; i++)
   {
     for(data_size j = 0; j < m_columns; j++)
@@ -83,14 +82,13 @@ Matrix<T>::Matrix(const Matrix<T>& source_matrix)
       m_elements[i][j] = 0;
     }
   }
-  cout << "X" << endl;
+
   copy(source_matrix);
 }
 
 template <class T>
 Matrix<T>::Matrix(const Matrix_Vector<T>& source_vector)
 {
-  cout << "R" <<endl;
   m_rows = source_vector.size();
   m_columns = 1;
   m_elements = new T*[m_rows];
@@ -108,18 +106,16 @@ Matrix<T>::Matrix(const Matrix_Vector<T>& source_vector)
 template <class T>
 Matrix<T>& Matrix<T>::operator=(const Matrix<T>& right_hand_side)
 {
-  cout << "What?" << endl;
   clear();
-  cout << "N" << endl;
+  
   m_rows = right_hand_side.m_rows;
   m_columns = right_hand_side.m_columns;
-  cout << "M " <<endl;
   m_elements = new T*[m_rows];
   for(data_size i = 0; i < m_rows; i++)
   {
     m_elements[i] = new T[m_columns];
   }
-  cout << "HERE!" << endl;
+  
   copy(right_hand_side);
   return *this;
 }

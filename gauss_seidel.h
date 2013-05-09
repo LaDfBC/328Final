@@ -18,8 +18,7 @@ double proximity_threshold = 0.000001;
   Solver inheritance includes template parameters for Solver AND Gauss Seidel!
 */
 template <class T, class U, class V>
-class Gauss_Seidel : public Solver<T, U, V>
-                                 //  Gauss_Seidel<T, U, V> >
+class Gauss_Seidel : public Solver<T, U, Gauss_Seidel<T, U, V> >
 {
   public:
     Gauss_Seidel(const V& input_diffeq);

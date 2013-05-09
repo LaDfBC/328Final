@@ -14,12 +14,7 @@ Gauss_Seidel<T, U, V>::Gauss_Seidel(const V& input_diffeq)
   
   unsigned int number_of_rows = 
     input_diffeq.get_a_matrix().get_number_of_rows();
-  cout << number_of_rows << endl;
-  cout << "p" << endl;
-  //U a_matrix_placeholder;
-  cout << "inbetween" << endl;
   U a_matrix_placeholder = input_diffeq.get_a_matrix();
-  cout << a_matrix_placeholder << endl;
   //Appends the b vector to the end of the matrix
   for (data_size i = 0; i < number_of_rows; i++)
   {
@@ -27,7 +22,6 @@ Gauss_Seidel<T, U, V>::Gauss_Seidel(const V& input_diffeq)
     {
       temporary_matrix(i, j) = a_matrix_placeholder(i, j);
     }
-    cout << i << " " << endl;
     temporary_matrix(i, a_matrix_placeholder.get_number_of_columns()) = 
       input_diffeq.get_b_vector()[i];
   }

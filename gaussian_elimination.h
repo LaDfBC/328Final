@@ -12,15 +12,17 @@
 #include "solver.h"
 
 template <class T, class U, class V>
-class Gaussian_Elimination : public Solver<T, U, V>
+class Gaussian_Elimination : public Solver<T, U, 
+                                              Gaussian_Elimination<T, U, V> >
 {
   public:
     Gaussian_Elimination(const V& input_diffeq);
-    T& operator()();
+    T evaluate();
 
   private:
     U m_a_matrix;
     T m_b_vector;
 };
 
+#include "gaussian_elimination.hpp"
 #endif //GAUSSIAN_ELIMINATION_H

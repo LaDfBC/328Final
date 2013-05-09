@@ -14,9 +14,7 @@ Gaussian_Elimination<T, U, V>::Gaussian_Elimination(const V& input_diffeq)
   
   unsigned int number_of_rows = 
     input_diffeq.get_a_matrix().get_number_of_rows();
-
   U a_matrix_placeholder = input_diffeq.get_a_matrix();
-
   //Appends the b vector to the end of the matrix
   for (data_size i = 0; i < number_of_rows; i++)
   {
@@ -24,39 +22,47 @@ Gaussian_Elimination<T, U, V>::Gaussian_Elimination(const V& input_diffeq)
     {
       temporary_matrix(i, j) = a_matrix_placeholder(i, j);
     }
-
     temporary_matrix(i, a_matrix_placeholder.get_number_of_columns()) = 
-      input_diffeq.get_b_vector[i];
+      input_diffeq.get_b_vector()[i];
   }
 
   m_a_matrix = temporary_matrix;
 }
 
 template <class T, class U, class V>
-Gaussian_Elimination<T, U, V>::T& operator()
+T Gaussian_Elimination<T, U, V>::evaluate()
 {
-  int number_of_columns = m_a_matrix.get_number_of_columns();
-  int number_of_rows = m_a_matrix.get_number_of_rows();
-  double current_pivot = 0;
-  for(unsigned int i = 0; i < number_of_columns - 2; i++)
+  unsigned int number_of_columns = m_a_matrix.get_number_of_columns();
+  unsigned int number_of_rows = m_a_matrix.get_number_of_rows();
+
+  for(unsigned int i = 0; i < number_of_columns; i++)
   {
     // CHECK FOR ROWS WITH LL 0's
-
-    double current_pivot = m_a_matrix(i, i);
-    for(unsigned int j = i; j < number_of_rows - 1; j++)
+    for(unsigned int j = i + 1; j < number_of_rows; j++)
     {
-      for(unsigned int k = j; k < number_of_columns - 1; i++)
+      double div_value = (m_a_matrix(j, i) / m_a_matrix(i, i));
+      for(unsigned int k = i + 1; k < number_of_columns; k++)
       {
-        m_a_matrix(j, k) -= m_a_matrix(i, k) * 
-                           (m_a_matrix(j, i) / m_a_matrix(i , i));
+        m_a_matrix(j, k) -= m_a_matrix(i, k) * div_value;
       }
+      m_a_matrix(j, i) = 0;
     }
   }
-
+  //Backwards Substitution
   T solution_vector(number_of_rows);
-  for(int i = 0 ; i < number_of_rows; i++)
+
+  solution_vector[number_of_rows - 1] = 
+    (m_a_matrix(number_of_rows - 1, number_of_columns - 1) / 
+     m_a_matrix(number_of_rows - 1, number_of_rows - 1));
+  
+  for (long j = number_of_rows - 2; j >= 0; j--)
   {
-    solution_vector[i] = m_a_matrix(i, number_of_columns - 1);
+    solution_vector[j] = m_a_matrix(j, number_of_columns - 1);
+    for(long i = number_of_columns -2; i > j; i--)
+    {
+      solution_vector[j] -= (m_a_matrix(j, i) * solution_vector[i]);
+    }
+    solution_vector[j] /= m_a_matrix(j, j);
   }
 
   return solution_vector;
