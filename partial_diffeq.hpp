@@ -180,9 +180,9 @@ init_vectors(const unsigned short input_points)
       temp_vector[i] += Bottom_Function(x_position);
     }
 
-    //(1/M) * (sum of 4 surrounding) - (h^2 / 4) * forcing function
+    //(1/M) * (sum of 4 surrounding) - (h^2 / M) * forcing function
     temp_vector[i] *= (1.0 / input_points);
-    temp_vector[i] -= ((pow((1.0 / input_points), 2) / input_points) * y_position);
+    temp_vector[i] -= ((pow((1.0 / input_points), 2) / input_points));// * y_position);
   }
 
   m_b_vector = temp_vector;

@@ -2,7 +2,7 @@
 * Programmer: George Mausshardt and Matt Lindsay
 * Date: 05/12/2013
 * FileName: gaussian_elimination.h
-* Purpose: Implementation file for the small class built to approximate
+* Purpose: Implementation file for the class built to approximate
 *   differential equations using Gaussian Elimination
 */
 
