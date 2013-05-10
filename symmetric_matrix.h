@@ -25,7 +25,7 @@
   PRE: Watch the preconditions of member functions. Some will only work if
     the class or scalar has a certain attribute defined. Remember that opposing
     elements must be the same.
-  PURPOSE: Define a simple-to-use class for purely diagonal matrices.  See
+  PURPOSE: Define a simple-to-use class for purely symmetric matrices.  See
     precondition for full list of constraints.
 */
 template <class T>
