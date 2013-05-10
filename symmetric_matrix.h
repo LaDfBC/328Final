@@ -1,6 +1,6 @@
 /*
-* Programmer: George Mausshardt
-* Date: 04/22/2013
+* Programmer: George Mausshardt and Matt Lindsay
+* Date: 05/12/2013
 * FileName: symmetric_matrix.h
 * Purpose: Header file for the Symmetric_Matrix class
 */

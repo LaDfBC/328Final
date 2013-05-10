@@ -156,6 +156,7 @@ init_vectors(const unsigned short input_points)
     x_position = ((i% point_adjuster) + 1) / static_cast<double>(input_points);
     y_position = ((i / point_adjuster) + 1) / static_cast<double>(input_points);
 
+    cout << y_position << endl;
     //Check left boundary
     if((i % point_adjuster) == 0)
     {
@@ -181,8 +182,8 @@ init_vectors(const unsigned short input_points)
     }
 
     //(1/M) * (sum of 4 surrounding) - (h^2 / M) * forcing function
-    temp_vector[i] *= (1.0 / input_points);
-    temp_vector[i] -= ((pow((1.0 / input_points), 2) / input_points));// * y_position);
+    temp_vector[i] /= input_points;
+    temp_vector[i] -= ((pow((1.0 / input_points), 2) / input_points) * y_position);
   }
 
   m_b_vector = temp_vector;

@@ -10,6 +10,7 @@
 #define GAUSSIAN_ELIMINATION_H
 
 #include "solver.h"
+#include "singular_err.h"
 
 template <class T, class U, class V>
 class Gaussian_Elimination : public Solver<T, U, 

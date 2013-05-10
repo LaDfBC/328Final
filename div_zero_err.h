@@ -1,7 +1,7 @@
 /*
-* Programmer: George Mausshardt
-* Date: 04/22/2013
-* FileName: div_zer_err.h
+* Programmer: George Mausshardt and Matt Lindsay
+* Date: 05/12/2013
+* FileName: div_zero_err.h
 * Purpose: Header file for the Div_Zero_Err class
 */
 

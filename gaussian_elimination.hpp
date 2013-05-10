@@ -49,14 +49,13 @@ T Gaussian_Elimination<T, U, V>::evaluate()
       }
       if(j == number_of_columns - 1)
       {
-        //throw //Some Err!
+        throw Singular_Err(i); //The offending row
       }
     }
   }
 
   for(unsigned int i = 0; i < number_of_columns; i++)
   {
-    // CHECK FOR ROWS WITH ALL 0's
     for(unsigned int j = i + 1; j < number_of_rows; j++)
     {
       double div_value = (m_a_matrix(j, i) / m_a_matrix(i, i));

@@ -1,6 +1,6 @@
 /*
-* Programmer: George Mausshardt
-* Date: 04/22/2013
+* Programmer: George Mausshardt and Matt Lindsay
+* Date: 05/12/2013
 * FileName: div_zero_err.hpp
 * Purpose: Implementation file for the Div_Zero_Err class
 */
