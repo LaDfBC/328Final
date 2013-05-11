@@ -1,5 +1,5 @@
 /*
-* Programmer: George Mausshardt
+* Programmer: George Mausshardt and Matt Lindsay
 * Date: 04/22/2013
 * FileName: operator_library.hpp
 * Purpose: Implementation file for the operators that are used

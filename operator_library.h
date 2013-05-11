@@ -1,6 +1,6 @@
 /*
-* Programmer: George Mausshardt
-* Date: 04/22/2013
+* Programmer: George Mausshardt and Matt Lindsay
+* Date: 05/12/2013
 * FileName: operator_library.h
 * Purpose: Implementation file for the operators that are used
 *   in many of the matrices and cannot be inherited, due to forcibly being
@@ -17,16 +17,18 @@ using std::ostream;
 using std::istream;
 
 /*
-  NOTE: THIS IS NOT A CLAASS DEFINITION FILE!  This file exists to provide
+  NOTE: THIS IS NOT A CLASS DEFINITION FILE!  This file exists to provide
     the same functions to derived classes that "normal" classes would enjoy.
     All of these functions have some kind of issues being directly related
     to the derived classes, so they are implemented here instead.
 */
 
 /*
-  OPERATOR: ostream& operator<<(ostream& out) const;
+  OPERATOR: ostream& operator<<(ostream& out, 
+                                  const Matrix_Base<T>& input_matrix)
     Input: out - the stream used to display information about
       the matrix to the screen
+           input_matrix - the Matrix to be output to the screen.
     Output: Functions like a cout statement.  The matrix is output
       to the screen in the format [e1, e2, e3 ... ek]
   PRE: Note that this function attempts to output each element in turn.
@@ -41,16 +43,76 @@ using std::istream;
 template <class T>
 ostream& operator<<(ostream& out, const Matrix_Base<T>& input_matrix);
 
+/*
+  OPERATOR: ostream& operator<<(ostream& out,
+                              const Solver<U, V, DerivedSolver>& input_solver)
+    Input: out - the stream used to display information about
+      the matrix to the screen
+           Solver<U, V, DerivedSolver>& input_solver;
+    Output: Functions like a cout statement.  The system-of-equations solver
+      is output  to the screen, showing the A-Matrix, B-Vector, and solution
+      vector
+  PRE: Note that this function attempts to output each element of matrices and
+    vectors in turn. Ensure that complex or programmer-defined objects have 
+    an output operator defined!
+  POST: Outputs the solver to the screen in the foramt defined above.
+    This operator calls whatever output_stream function is defined in the 
+    given solver class.
+  PURPOSE: Allow "cout << Solver" to function correctly. Called
+    when a linear-systems-of-equations solver must be displayed.
+*/
 template <class T, class U, class V, class DerivedSolver>
 ostream& operator<<(ostream& out, 
                       const Solver<U, V, DerivedSolver>& input_solver);
 
+/*
+  FUNCTION: Poisson_Top(double x)
+    Input: x - the x position in the outside of a mesh estimating
+      a partial differentiql equation
+    Output: double - the output of Poisson's equation on the Top
+      edge of the estimation matrix defined above.
+  PRE: None.
+  POST: Returns x-cubed, in this case.  Represents the top of the
+    estimation mesh for Poisson's Equation's DiffEQ.
+  PURPOSE: Outer mesh estimation function. Simply x-cubed currently.
+*/
 double Poisson_Top(double x);
 
+/*
+  FUNCTION: Poisson_Bottom(double x)
+    Input: x - the x position in the outside of a mesh estimating
+      a partial differentiql equation
+    Output: double - the output of Poisson's equation on the Bottom
+      edge of the estimation matrix defined above.
+  PRE: None.
+  POST: Returns x-cubed, in this case.  Represents the bottom of the
+    estimation mesh for Poisson's Equation's DiffEQ.
+  PURPOSE: Outer mesh estimation function. Simply x-cubed currently.
+*/
 double Poisson_Bottom(double x);
 
+/*
+  FUNCTION: Poisson_Left(double x)
+    Input: dummy value to make function pointers work.
+    Output: double - the output of Poisson's equation on the Left
+      edge of the estimation matrix defined above.
+  PRE: None.
+  POST: Returns 0, currently.  Represents the left of the
+    estimation mesh for Poisson's Equation's DiffEQ.
+  PURPOSE: Outer mesh estimation function. Simply 0, currently.
+*/
 double Poisson_Left(double);
 
+/*
+  FUNCTION: Poisson_Right(double x)
+    Input: dummy value to make function pointers work
+    Output: double - the output of Poisson's equation on the Right
+      edge of the estimation matrix defined above.
+  PRE: None.
+  POST: Returns 1, in this case.  Represents the top of the
+    estimation mesh for Poisson's Equation's DiffEQ.
+  PURPOSE: Outer mesh estimation function. Simply 1, currently.
+*/
 double Poisson_Right(double);
 
 /*
