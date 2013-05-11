@@ -48,7 +48,8 @@ ostream& operator<<(ostream& out, const Matrix_Base<T>& input_matrix);
                               const Solver<U, V, DerivedSolver>& input_solver)
     Input: out - the stream used to display information about
       the matrix to the screen
-           Solver<U, V, DerivedSolver>& input_solver;
+           Solver<U, V, DerivedSolver>& input_solver - the solver to be
+      displayed
     Output: Functions like a cout statement.  The system-of-equations solver
       is output  to the screen, showing the A-Matrix, B-Vector, and solution
       vector
@@ -66,6 +67,32 @@ ostream& operator<<(ostream& out,
                       const Solver<U, V, DerivedSolver>& input_solver);
 
 
+/*
+  OPERTOR: ostream& operator<<(ostream& out, const Partial_DiffEQ<T, U, V, 
+                                                       Top_Function, 
+                                                       Left_Function, 
+                                                       Right_Function, 
+                                                       Bottom_Function>& input_diffeq);
+    Input: out - the stream used to display information about
+      the differential equation to the screen
+           Partial_DiffEQ<T, U, V, 
+                          Top_Function, 
+                          Left_Function, 
+                          Right_Function, 
+                          Bottom_Function>& input_diffeq - the differential
+             equation to be displayed to the screen
+    Output: Functions like a cout statement.  The system-of-equations solver
+      is output  to the screen, showing the solution vector in a useful format
+  PRE: Note that this function attempts to output each element of 
+    vectors in turn. Ensure that complex or programmer-defined objects stored
+    in the vectors have an output operator defined!
+  POST: Outputs the equation to the screen in the foramt defined above.
+    This operator calls whatever output_stream function is defined in the 
+    given differetial equation class.
+  PURPOSE: Allow "cout << DiffEQ" to function correctly. Called
+    when a differential equation must be displayed
+*/
+
 template<class T, class U, class V, double Top_Function(double), 
                                     double Left_Function(double), 
                                     double Right_Function(double), 
@@ -75,7 +102,6 @@ ostream& operator<<(ostream& out, const Partial_DiffEQ<T, U, V,
                                                        Left_Function, 
                                                        Right_Function, 
                                                        Bottom_Function>& input_diffeq);
-
 /*
   FUNCTION: Poisson_Top(double x)
     Input: x - the x position in the outside of a mesh estimating

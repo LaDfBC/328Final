@@ -46,14 +46,6 @@ class Partial_DiffEQ
     */
     Partial_DiffEQ(const unsigned short input_points);
 
-    Partial_DiffEQ(const Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
-                        Right_Function, Bottom_Function>& input_diffeq);
-
-    Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
-                        Right_Function,Bottom_Function>&
-    operator=(Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
-                        Right_Function,Bottom_Function>& input_diffeq);
-
     /*
       FUNCTION: V& get_a_matrix() const;
       PRE: None
@@ -66,13 +58,20 @@ class Partial_DiffEQ
     /*
       FUNCTION: U& get_b_vector() const;
       PRE: None
-      POST: Returns (a reference to) the vector representing the right hand
+      POST: Returns the vector representing the right hand
         side of the system of equations.
-      PURPOSE: Getter for the (reference to) vector of values set equal to 
+      PURPOSE: Getter for the vector of values set equal to 
         A times the coefficients.
     */
     U get_b_vector() const;
 
+    /*
+      FUNCTION: U& get_num_points() const;
+      PRE: None
+      POST: Returns the number of points as passed into the constructor of
+        this class.  This is the number of points in a row in the mesh - 1.
+      PURPOSE: Getter for the number of points in a row in the mesh - 1.
+    */
     T get_num_points() const { return m_num_points; }
 
     /*
@@ -85,6 +84,13 @@ class Partial_DiffEQ
     */
     void set_x_vector_index(const short input_index, const T input_data);
 
+    /*
+      FUNCTION: void set_x_vector(const U& input_vector)
+      PRE: The vector class used in this class should have an assignment
+        operator defined if pointers are involved!
+      POST: Sets x_vector equal to input_vector. 
+      PURPOSE: Setter for the x_vector (as taken from solver classes).
+    */
     void set_x_vector(const U& input_vector) {m_x_vector = input_vector;}
    
     /*

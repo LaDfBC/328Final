@@ -65,7 +65,7 @@ int main(int argc, char* argv[])
                  Symmetric_Matrix<double>, 
                  Poisson_Top, Poisson_Left, 
                  Poisson_Right, Poisson_Bottom> > solver2(checker);
-  cout << solver2.evaluate() << endl;
+  //cout << solver2.evaluate() << endl;
 
   return 0;
 }

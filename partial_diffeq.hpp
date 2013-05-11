@@ -28,39 +28,6 @@ template<class T, class U, class V, double Top_Function(double),
                                     double Left_Function(double), 
                                     double Right_Function(double), 
                                     double Bottom_Function(double)>
-Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
-                        Right_Function,Bottom_Function>::
-Partial_DiffEQ(const Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
-                        Right_Function,Bottom_Function>&  input_diffeq)
-{
-  m_a_matrix = input_diffeq.m_a_matrix;
-  m_b_vector = input_diffeq.m_b_vector;
-  m_x_vector = input_diffeq.m_x_vector;
-  m_num_points = input_diffeq.get_number_of_points();
-}
-
-template<class T, class U, class V, double Top_Function(double), 
-                                    double Left_Function(double), 
-                                    double Right_Function(double), 
-                                    double Bottom_Function(double)>
-Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
-                        Right_Function,Bottom_Function>&
-Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
-                        Right_Function,Bottom_Function>::
-operator=(Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
-                        Right_Function,Bottom_Function>& input_diffeq)
-{
-  m_a_matrix = input_diffeq.m_a_matrix;
-  m_b_vector = input_diffeq.m_b_vector;
-  m_x_vector = input_diffeq.m_x_vector;
-  m_num_points = input_diffeq.m_num_points;
-  return *this;
-}
-
-template<class T, class U, class V, double Top_Function(double), 
-                                    double Left_Function(double), 
-                                    double Right_Function(double), 
-                                    double Bottom_Function(double)>
 V& Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
                           Right_Function,Bottom_Function>::
 get_a_matrix() const
@@ -102,7 +69,6 @@ ostream& Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
 output_stream(ostream& out) const
 {
   long i = m_b_vector.size() - (m_num_points - 1);
-  cout << "I:" << i << endl;
   while(i >= 0)
   {
     for(long j = i; j < i + (m_num_points - 1); j++)
