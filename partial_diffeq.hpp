@@ -26,19 +26,6 @@ template<class T, class U, class V, double Top_Function(double),
                                     double Left_Function(double), 
                                     double Right_Function(double), 
                                     double Bottom_Function(double)>
-T Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
-                          Right_Function,Bottom_Function>::
-operator()()
-{
-  // this stops compiler err - What do you want this to do?
-  Matrix_Vector<T> return_this;
-  return return_this;
-}
-
-template<class T, class U, class V, double Top_Function(double), 
-                                    double Left_Function(double), 
-                                    double Right_Function(double), 
-                                    double Bottom_Function(double)>
 V& Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
                           Right_Function,Bottom_Function>::
 get_a_matrix() const
@@ -156,7 +143,6 @@ init_vectors(const unsigned short input_points)
     x_position = ((i% point_adjuster) + 1) / static_cast<double>(input_points);
     y_position = ((i / point_adjuster) + 1) / static_cast<double>(input_points);
 
-    cout << y_position << endl;
     //Check left boundary
     if((i % point_adjuster) == 0)
     {

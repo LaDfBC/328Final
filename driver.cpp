@@ -9,7 +9,6 @@
 */
 
 #include <iostream>
-#include "file_stream.h"
 #include "matrix.h"
 #include "operator_library.h"
 #include "solver.h"
@@ -23,7 +22,6 @@
 using std::cout;
 using std::cin;
 using std::endl;
-using std::vector;
 using std::string;	
 
 int main(int argc, char* argv[])
@@ -47,7 +45,6 @@ int main(int argc, char* argv[])
                  Poisson_Right, Poisson_Bottom> checker(4);
   
   cout << checker.get_b_vector() << endl;
-  cout << checker.get_a_matrix() << endl;
 
   Gaussian_Elimination<Matrix_Vector<double>, 
                        Matrix<double>, 
