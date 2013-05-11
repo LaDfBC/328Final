@@ -48,7 +48,7 @@ int main(int argc, char* argv[])
 
   Partial_DiffEQ<double, Matrix_Vector<double>, Symmetric_Matrix<double>, 
                  Poisson_Top, Poisson_Left, 
-                 Poisson_Right, Poisson_Bottom> checker(6);
+                 Poisson_Right, Poisson_Bottom> checker(9);
 
   Gaussian_Elimination<Matrix_Vector<double>, 
                        Matrix<double>, 

@@ -155,7 +155,7 @@ init_vectors(const unsigned short input_points)
     }
 
     //Check top boundary
-    if((i / point_adjuster) == 2)
+    if((i / point_adjuster) == (input_points - 2))
     {
       temp_vector[i] += Top_Function(x_position);
     }
@@ -171,8 +171,8 @@ init_vectors(const unsigned short input_points)
     {
       temp_vector[i] += Bottom_Function(x_position);
     }
-    //(1/M) * (sum of 4 surrounding) - (h^2 / M) * forcing function
-    temp_vector[i] /= input_points;
+    //(1/4) * (sum of 4 surrounding) - (h^2 / 4) * forcing function
+    temp_vector[i] /= 4.0;//point_adjuster;//input_points;
     temp_vector[i] -= ((pow((1 / static_cast<float>(input_points)), 2) / 
                         4.0) * y_position);
   }
