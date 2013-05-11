@@ -65,6 +65,17 @@ template <class T, class U, class V, class DerivedSolver>
 ostream& operator<<(ostream& out, 
                       const Solver<U, V, DerivedSolver>& input_solver);
 
+
+template<class T, class U, class V, double Top_Function(double), 
+                                    double Left_Function(double), 
+                                    double Right_Function(double), 
+                                    double Bottom_Function(double)>
+ostream& operator<<(ostream& out, const Partial_DiffEQ<T, U, V, 
+                                                       Top_Function, 
+                                                       Left_Function, 
+                                                       Right_Function, 
+                                                       Bottom_Function>& input_diffeq);
+
 /*
   FUNCTION: Poisson_Top(double x)
     Input: x - the x position in the outside of a mesh estimating

@@ -9,6 +9,8 @@
 #ifndef PARTIAL_DIFFEQ_H
 #define PARTIAL_DIFFEQ_H
 
+#include <iostream>
+
 /*
   CLASS: Partial_DiffEQ
     Member Variables: m_num_points - the number of points in a row of the
@@ -44,6 +46,14 @@ class Partial_DiffEQ
     */
     Partial_DiffEQ(const unsigned short input_points);
 
+    Partial_DiffEQ(const Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
+                        Right_Function, Bottom_Function>& input_diffeq);
+
+    Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
+                        Right_Function,Bottom_Function>&
+    operator=(Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
+                        Right_Function,Bottom_Function>& input_diffeq);
+
     /*
       FUNCTION: V& get_a_matrix() const;
       PRE: None
@@ -61,7 +71,9 @@ class Partial_DiffEQ
       PURPOSE: Getter for the (reference to) vector of values set equal to 
         A times the coefficients.
     */
-    U& get_b_vector() const;
+    U get_b_vector() const;
+
+    T get_num_points() const { return m_num_points; }
 
     /*
       FUNCTION: void set_x_vector_index(const short input_index, 
@@ -73,12 +85,14 @@ class Partial_DiffEQ
     */
     void set_x_vector_index(const short input_index, const T input_data);
 
+    void set_x_vector(const U& input_vector) {m_x_vector = input_vector;}
+   
     /*
       FUNCTION: ostream& output_stream(ostream& out) const
       PRE: None. To avoid strange behavior, pass an empty out parameter
         to the function so only the class's member variables are output.
       POST: Returns a stream that will be outputted to the screen.  The stream
-        outputs the matrix and both vectors. 
+        outputs the solution matrix.
       PURPOSE: Output the differential equation information and allow a call
         such as cout << DiffEQ to function properly.
     */

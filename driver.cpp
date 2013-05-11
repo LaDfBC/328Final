@@ -9,23 +9,29 @@
 */
 
 #include <iostream>
+#include <ostream>
 #include "matrix.h"
+#include "partial_diffeq.h"
 #include "operator_library.h"
 #include "solver.h"
 #include "gauss_seidel.h"
 #include "gaussian_elimination.h"
 #include "symmetric_matrix.h"
-#include "partial_diffeq.h"
 #include "domain_err.h"
 #include "analyzer.h"
 
 using std::cout;
 using std::cin;
 using std::endl;
-using std::string;	
+using std::string;
+using std::ios;
 
 int main(int argc, char* argv[])
 {
+  cout.setf(ios::fixed); 
+  cout.setf(ios::showpoint); 
+  cout.precision(6); 
+
   string test_file_name;
   if (argc < 2)
   {
@@ -42,9 +48,7 @@ int main(int argc, char* argv[])
 
   Partial_DiffEQ<double, Matrix_Vector<double>, Symmetric_Matrix<double>, 
                  Poisson_Top, Poisson_Left, 
-                 Poisson_Right, Poisson_Bottom> checker(4);
-  
-  cout << checker.get_b_vector() << endl;
+                 Poisson_Right, Poisson_Bottom> checker(6);
 
   Gaussian_Elimination<Matrix_Vector<double>, 
                        Matrix<double>, 
@@ -52,7 +56,8 @@ int main(int argc, char* argv[])
                          Symmetric_Matrix<double>, 
                          Poisson_Top, Poisson_Left, 
                          Poisson_Right, Poisson_Bottom> > solver1(checker);
-  cout << solver1.evaluate() << endl;
+  checker.set_x_vector(solver1.evaluate());
+  cout << checker << endl;
 
   Gauss_Seidel<Matrix_Vector<double>, 
                Matrix<double>, 

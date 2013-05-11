@@ -22,6 +22,19 @@ ostream& operator<<(ostream& out,
   return input_solver.output_stream(out);
 }
 
+template<class T, class U, class V, double Top_Function(double), 
+                                    double Left_Function(double), 
+                                    double Right_Function(double), 
+                                    double Bottom_Function(double)>
+ostream& operator<<(ostream& out, const Partial_DiffEQ<T, U, V, 
+                                                       Top_Function, 
+                                                       Left_Function, 
+                                                       Right_Function, 
+                                                       Bottom_Function>& input_diffeq)
+{
+  return input_diffeq.output_stream(out);
+}
+
 double Poisson_Top(double x)
 {
   return x * x * x;

@@ -6,6 +6,8 @@
 *   define a partial differential equation
 */
 
+#include "partial_diffeq.h"
+
 template<class T, class U, class V, double Top_Function(double), 
                                     double Left_Function(double), 
                                     double Right_Function(double), 
@@ -26,6 +28,39 @@ template<class T, class U, class V, double Top_Function(double),
                                     double Left_Function(double), 
                                     double Right_Function(double), 
                                     double Bottom_Function(double)>
+Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
+                        Right_Function,Bottom_Function>::
+Partial_DiffEQ(const Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
+                        Right_Function,Bottom_Function>&  input_diffeq)
+{
+  m_a_matrix = input_diffeq.m_a_matrix;
+  m_b_vector = input_diffeq.m_b_vector;
+  m_x_vector = input_diffeq.m_x_vector;
+  m_num_points = input_diffeq.get_number_of_points();
+}
+
+template<class T, class U, class V, double Top_Function(double), 
+                                    double Left_Function(double), 
+                                    double Right_Function(double), 
+                                    double Bottom_Function(double)>
+Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
+                        Right_Function,Bottom_Function>&
+Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
+                        Right_Function,Bottom_Function>::
+operator=(Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
+                        Right_Function,Bottom_Function>& input_diffeq)
+{
+  m_a_matrix = input_diffeq.m_a_matrix;
+  m_b_vector = input_diffeq.m_b_vector;
+  m_x_vector = input_diffeq.m_x_vector;
+  m_num_points = input_diffeq.m_num_points;
+  return *this;
+}
+
+template<class T, class U, class V, double Top_Function(double), 
+                                    double Left_Function(double), 
+                                    double Right_Function(double), 
+                                    double Bottom_Function(double)>
 V& Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
                           Right_Function,Bottom_Function>::
 get_a_matrix() const
@@ -37,11 +72,11 @@ template<class T, class U, class V, double Top_Function(double),
                                     double Left_Function(double), 
                                     double Right_Function(double), 
                                     double Bottom_Function(double)>
-U& Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
+U Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
                              Right_Function,Bottom_Function>::
 get_b_vector() const
 {
-  return const_cast<U&>(m_b_vector);
+  return m_b_vector;
 }
 
 template<class T, class U, class V, double Top_Function(double), 
@@ -57,6 +92,7 @@ set_x_vector_index(const short input_index, const T input_data)
 }
 
 
+
 template<class T, class U, class V, double Top_Function(double), 
                                     double Left_Function(double), 
                                     double Right_Function(double), 
@@ -65,15 +101,17 @@ ostream& Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
                                  Right_Function,Bottom_Function>::
 output_stream(ostream& out) const
 {
-  out << "A Matrix: " << endl;
-  out << m_a_matrix << endl << endl;
-
-  out << "B Vector: " << endl;
-  out << m_b_vector << endl  << endl;
-
-  out << "X Vector: " << endl;
-  out << m_x_vector << endl;
-
+  long i = m_b_vector.size() - (m_num_points - 1);
+  cout << "I:" << i << endl;
+  while(i >= 0)
+  {
+    for(long j = i; j < i + (m_num_points - 1); j++)
+    {
+      out << m_x_vector[j] << "\t";
+    }
+    out << endl;
+    i -= (m_num_points - 1);
+  }
   return out;
 }
 
@@ -85,6 +123,7 @@ void Partial_DiffEQ<T, U, V, Top_Function,Left_Function,
                           Right_Function,Bottom_Function>::
 init_a_matrix(const unsigned short input_points)
 {
+  m_num_points = input_points;
   //Create the A Matrix - It will not need to be changed after this!
   unsigned short point_adjuster = input_points - 1;
   // Actually, I want to write a Quad_Matrix class that only stores 1/4
@@ -169,7 +208,7 @@ init_vectors(const unsigned short input_points)
     //(1/M) * (sum of 4 surrounding) - (h^2 / M) * forcing function
     temp_vector[i] /= input_points;
     temp_vector[i] -= ((pow((1 / static_cast<float>(input_points)), 2) / 
-                        input_points) * y_position);
+                        4.0) * y_position);
   }
 
   m_b_vector = temp_vector;
