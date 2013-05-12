@@ -28,6 +28,8 @@ using std::ios;
 
 int main(int argc, char* argv[])
 {
+  Analyzer timer1;
+  Analyzer timer2;
   cout.setf(ios::fixed); 
   cout.setf(ios::showpoint); 
   cout.precision(6); 
@@ -48,8 +50,9 @@ int main(int argc, char* argv[])
 
   Partial_DiffEQ<double, Matrix_Vector<double>, Symmetric_Matrix<double>, 
                  Poisson_Top, Poisson_Left, 
-                 Poisson_Right, Poisson_Bottom> checker(9);
+                 Poisson_Right, Poisson_Bottom> checker(50);
 
+  timer1.start();
   Gaussian_Elimination<Matrix_Vector<double>, 
                        Matrix<double>, 
                        Partial_DiffEQ<double, Matrix_Vector<double>, 
@@ -57,8 +60,10 @@ int main(int argc, char* argv[])
                          Poisson_Top, Poisson_Left, 
                          Poisson_Right, Poisson_Bottom> > solver1(checker);
   checker.set_x_vector(solver1.evaluate());
-  cout << checker << endl;
+  //cout << checker << endl;
+  cout<<"Gaussian Elimination time: "<<timer1.stop()<<endl;
 
+  timer2.start();
   Gauss_Seidel<Matrix_Vector<double>, 
                Matrix<double>, 
                Partial_DiffEQ<double, Matrix_Vector<double>, 
@@ -66,6 +71,7 @@ int main(int argc, char* argv[])
                  Poisson_Top, Poisson_Left, 
                  Poisson_Right, Poisson_Bottom> > solver2(checker);
   //cout << solver2.evaluate() << endl;
+  cout<<"Gauss Seidel time: "<<timer2.stop()<<endl;
 
   return 0;
 }
