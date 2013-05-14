@@ -50,7 +50,7 @@ int main(int argc, char* argv[])
 
   Partial_DiffEQ<double, Matrix_Vector<double>, Symmetric_Matrix<double>, 
                  Poisson_Top, Poisson_Left, 
-                 Poisson_Right, Poisson_Bottom> checker(50);
+                 Poisson_Right, Poisson_Bottom> checker(25);
 
   timer1.start();
   Gaussian_Elimination<Matrix_Vector<double>, 
@@ -70,7 +70,7 @@ int main(int argc, char* argv[])
                  Symmetric_Matrix<double>, 
                  Poisson_Top, Poisson_Left, 
                  Poisson_Right, Poisson_Bottom> > solver2(checker);
-  //cout << solver2.evaluate() << endl;
+  cout << solver2.evaluate() << endl;
   cout<<"Gauss Seidel time: "<<timer2.stop()<<endl;
 
   return 0;
